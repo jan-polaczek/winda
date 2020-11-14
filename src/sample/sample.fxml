@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="500.0" prefWidth="700.0">
+         <children>
+            <Text layoutX="14.0" layoutY="246.0" text="Przyciski wewnątrz windy" textAlignment="CENTER" wrappingWidth="182.0" />
+            <Text layoutX="474.0" layoutY="246.0" text="Przyciski na zewnątrz windy" textAlignment="CENTER" wrappingWidth="182.0" />
+            <VBox layoutX="94.0" layoutY="269.0" prefHeight="142.0" prefWidth="23.0">
+               <children>
+                  <Button fx:id="inside4" mnemonicParsing="false" onMouseClicked="#handleInsidePress" text="4" />
+                  <Button fx:id="inside3" mnemonicParsing="false" onMouseClicked="#handleInsidePress" text="3" />
+                  <Button fx:id="inside2" mnemonicParsing="false" onMouseClicked="#handleInsidePress" text="2" />
+                  <Button fx:id="inside1" mnemonicParsing="false" onMouseClicked="#handleInsidePress" text="1" />
+                  <Button fx:id="inside0" mnemonicParsing="false" onMouseClicked="#handleInsidePress" text="0" />
+               </children></VBox>
+            <VBox layoutX="554.0" layoutY="269.0" prefHeight="144.0" prefWidth="23.0">
+               <children>
+                  <Button mnemonicParsing="false" text="4" />
+                  <Button mnemonicParsing="false" text="3" />
+                  <Button mnemonicParsing="false" text="2" />
+                  <Button mnemonicParsing="false" text="1" />
+                  <Button mnemonicParsing="false" text="0" />
+               </children></VBox>
+            <Pane layoutX="224.0" layoutY="11.0" prefHeight="450.0" prefWidth="200.0">
+               <children>
+                  <Rectangle fx:id="elevatorShape" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="80.0" layoutX="56.0" layoutY="370.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+                  <Line endX="100.0" layoutX="100.0" layoutY="450.0" startX="-100.0" />
+                  <Line endX="100.0" layoutX="100.0" layoutY="360.0" startX="-100.0" />
+                  <Line endX="100.0" layoutX="100.0" layoutY="270.0" startX="-100.0" />
+                  <Line endX="100.0" layoutX="100.0" layoutY="180.0" startX="-100.0" />
+                  <Line endX="100.0" layoutX="100.0" layoutY="90.0" startX="-100.0" />
+                  <Line endX="100.0" layoutX="100.0" startX="-100.0" />
+               </children>
+            </Pane>
+         </children></Pane>
+   </children>
+</GridPane>
