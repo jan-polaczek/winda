@@ -2,7 +2,10 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.scene.control.Button;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 
 import java.util.*;
 
@@ -15,6 +18,8 @@ public class Elevator {
     private final int DEFAULT_SPEED = 5;
     private final int REFRESH_TIME = 50;
     private final int WAIT_TIME = 1000;
+    private final int BASE_ANGLE = 30;
+    private final int MAX_ANGLE = 120;
     private boolean shouldStopOverride = false;
     private int height = 0;
     private int speed = 0;
@@ -25,12 +30,17 @@ public class Elevator {
     private final Rectangle shape;
     private final Button[] insideButtons;
     private final Button[] outsideButtons;
+    private final Rotate floorPointerRotation = new Rotate(BASE_ANGLE, 100, 0);
+    private final Circle waitingIndicator;
     Timer timer = new Timer();
 
-    public Elevator(Rectangle shape, Button[] insideButtons, Button[] outsideButtons) {
+    public Elevator(Rectangle shape, Button[] insideButtons, Button[] outsideButtons, Line floorPointer, Circle waitingIndicator) {
         this.shape = shape;
         this.insideButtons = insideButtons;
         this.outsideButtons = outsideButtons;
+        this.waitingIndicator = waitingIndicator;
+        floorPointer.getTransforms().add(this.floorPointerRotation);
+        System.out.println(waitingIndicator.toString());
     }
 
     public void go()  {
@@ -41,11 +51,13 @@ public class Elevator {
                     if(!shouldStop()) {
                         if (dontMoveUntil < System.currentTimeMillis()) {
                             decideMove();
+                            setWaitingIndicatorToInactive();
                         }
                     } else {
                         int currentFloor = (int)translateHeightToFloor(height);
                         setButtonToInactive(insideButtons, currentFloor);
                         setButtonToInactive(outsideButtons, currentFloor);
+                        setWaitingIndicatorToActive();
                         if (!insideList.isEmpty()) {
                             dontMoveUntil = System.currentTimeMillis() + WAIT_TIME;
                             targetFloor = insideList.removeLast();
@@ -101,6 +113,14 @@ public class Elevator {
         list[floor].setStyle("-fx-background-color: #f0f0f0; -fx-border-color: #aaaaaa;");
     }
 
+    private void setWaitingIndicatorToActive() {
+        this.waitingIndicator.setStyle("-fx-fill: #ffe500");
+    }
+
+    private void setWaitingIndicatorToInactive() {
+        this.waitingIndicator.setStyle("-fx-fill: #000");
+    }
+
     public void addFloorFromOutside(int floor) {
         if (this.outsideList.isEmpty() || this.outsideList.peek() != floor) {
             this.outsideList.push(floor);
@@ -111,6 +131,12 @@ public class Elevator {
     private void move() {
         this.setSpeedForFloor();
         this.setHeight(this.getHeight() + this.getSpeed());
+        this.updateFloorPointer();
+    }
+
+    private void updateFloorPointer() {
+        float angle = this.MAX_ANGLE * translateHeightToFloor(this.getHeight()) / 4;
+        this.floorPointerRotation.angleProperty().setValue(this.BASE_ANGLE + angle);
     }
 
     public boolean shouldStop() {
@@ -122,7 +148,7 @@ public class Elevator {
         }
     }
 
-    public void setSpeedForFloor() {
+    private void setSpeedForFloor() {
         int floorHeight = translateFloorToHeight(this.targetFloor);
         this.speed = this.height < floorHeight ? DEFAULT_SPEED : -DEFAULT_SPEED;
     }

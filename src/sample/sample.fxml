@@ -35,7 +35,7 @@
                </children></VBox>
             <Pane layoutX="224.0" layoutY="11.0" prefHeight="450.0" prefWidth="200.0">
                <children>
-                  <Rectangle fx:id="elevatorShape" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="80.0" layoutX="56.0" layoutY="370.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+                  <Rectangle fx:id="elevatorShape" arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="80.0" layoutX="56.0" layoutY="370.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
                   <Line endX="100.0" layoutX="100.0" layoutY="450.0" startX="-100.0" />
                   <Line endX="100.0" layoutX="100.0" layoutY="360.0" startX="-100.0" />
                   <Line endX="100.0" layoutX="100.0" layoutY="270.0" startX="-100.0" />
@@ -46,6 +46,42 @@
             </Pane>
             <Button fx:id="btnModeSimple" layoutX="56.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#handleSimpleModeChoice" text="Tryb prosty" />
             <Button fx:id="btnModeSmart" layoutX="41.0" layoutY="135.0" mnemonicParsing="false" onMouseClicked="#handleSmartModeChoice" text="Tryb inteligentny" />
+            <Pane layoutX="460.0" layoutY="83.0" prefHeight="129.0" prefWidth="210.0">
+               <children>
+                  <Arc fill="WHITE" layoutX="105.0" layoutY="123.0" length="120.0" radiusX="100.0" radiusY="100.0" startAngle="30.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+                  <Arc fill="WHITE" layoutX="105.0" layoutY="123.0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="30.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+                  <Arc fill="WHITE" layoutX="105.0" layoutY="123.0" length="60.0" radiusX="100.0" radiusY="100.0" startAngle="30.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+                  <Arc fill="WHITE" layoutX="105.0" layoutY="123.0" length="30.0" radiusX="100.0" radiusY="100.0" startAngle="30.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+                  <Text layoutX="7.0" layoutY="74.0" text="0" textAlignment="CENTER" wrappingWidth="14.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="98.0" layoutY="22.0" text="2" textAlignment="CENTER" wrappingWidth="14.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="48.0" layoutY="33.0" text="1" textAlignment="CENTER" wrappingWidth="14.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="148.0" layoutY="33.0" text="3" textAlignment="CENTER" wrappingWidth="14.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="191.0" layoutY="74.0" text="4" textAlignment="CENTER" wrappingWidth="14.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Line fx:id="floorPointer" endX="100.0" layoutX="5.0" layoutY="123.0" stroke="#ff7200" strokeWidth="3.0" />
+               </children>
+            </Pane>
+            <Circle fx:id="waitingIndicator" layoutX="565.0" layoutY="44.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+            <Text layoutX="545.0" layoutY="49.0" text="Postój" textAlignment="CENTER" wrappingWidth="40.0" />
          </children></Pane>
    </children>
 </GridPane>

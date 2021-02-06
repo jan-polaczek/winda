@@ -3,31 +3,42 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 
 public class Controller {
     @FXML
-    public Button inside0;
+    private Button btnModeSimple;
     @FXML
-    public Button inside1;
+    private Button btnModeSmart;
     @FXML
-    public Button inside2;
+    private Button inside0;
     @FXML
-    public Button inside3;
+    private Button inside1;
     @FXML
-    public Button inside4;
+    private Button inside2;
     @FXML
-    public Button outside0;
+    private Button inside3;
     @FXML
-    public Button outside1;
+    private Button inside4;
     @FXML
-    public Button outside2;
+    private Button outside0;
     @FXML
-    public Button outside3;
+    private Button outside1;
     @FXML
-    public Button outside4;
+    private Button outside2;
+    @FXML
+    private Button outside3;
+    @FXML
+    private Button outside4;
     @FXML
     private Rectangle elevatorShape;
+    @FXML
+    private Line floorPointer;
+    @FXML
+    private Circle waitingIndicator;
 
     private Elevator elevator;
 
@@ -35,7 +46,8 @@ public class Controller {
     public void initialize() {
         Button[] insideButtons = {inside0, inside1, inside2, inside3, inside4};
         Button[] outsideButtons = {outside0, outside1, outside2, outside3, outside4};
-        elevator = new Elevator(elevatorShape, insideButtons, outsideButtons);
+        elevator = new Elevator(elevatorShape, insideButtons, outsideButtons, floorPointer, waitingIndicator);
+        btnModeSimple.setStyle("-fx-background-color: #ffe500;  -fx-border-color: #aaaaaa;");
         elevator.go();
     }
 
@@ -58,10 +70,14 @@ public class Controller {
     @FXML
     private void handleSimpleModeChoice(MouseEvent e) {
         elevator.setMode(Elevator.Mode.SIMPLE);
+        btnModeSimple.setStyle("-fx-background-color: #ffe500;  -fx-border-color: #aaaaaa;");
+        btnModeSmart.setStyle("-fx-background-color: #f0f0f0; -fx-border-color: #aaaaaa;");
     }
 
     @FXML
     private void handleSmartModeChoice(MouseEvent e) {
         elevator.setMode(Elevator.Mode.SMART);
+        btnModeSmart.setStyle("-fx-background-color: #ffe500;  -fx-border-color: #aaaaaa;");
+        btnModeSimple.setStyle("-fx-background-color: #f0f0f0; -fx-border-color: #aaaaaa;");
     }
 }
